@@ -34,6 +34,12 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <!-- <style>
+        #map{
+            width: 500px;
+            height: 400px;
+        }
+    </style> -->
 </head>
 
 <body>
@@ -56,6 +62,7 @@
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#faq">F.A.Q</a></li>
           <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#payment">Support Us</a></li>
 
           <li class="get-started"><a href="#features">Get Started</a></li>
         </ul>
@@ -78,6 +85,7 @@
           </div>
         </div>
         <div class="col-lg-6 d-lg-flex flex-lg-column align-items-stretch order-1 order-lg-2 hero-img" data-aos="fade-up">
+<!--          <div id='map'></div>-->
           <img src='{% static "intro/img/hero-img.png" %}' class="img-fluid" alt="">
         </div>
       </div>
@@ -498,7 +506,7 @@
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-up">
+            <form action="contact/" method="post" role="form" class="php-email-form" data-aos="fade-up">{% csrf_token %}
               <div class="form-group">
                 <input placeholder="Your Name" type="text" name="name" class="form-control" id="name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
                 <div class="validate"></div>
@@ -515,12 +523,80 @@
                 <textarea placeholder="Message" class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us"></textarea>
                 <div class="validate"></div>
               </div>
-              <div class="mb-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
+<!--              <div class="mb-3">-->
+<!--                <div class="loading">Loading</div>-->
+<!--                <div class="error-message"></div>-->
+<!--                <div class="sent-message">Your message has been sent. Thank you!</div>-->
+<!--              </div>-->
               <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+    <!-- ======= Payment Section ======= -->
+    <section id="payment" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Support Us</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-lg-6 info" data-aos="fade-up">
+                <i class="bx bx-map"></i>
+                <h4>Address</h4>
+                <p>A108 Adam Street,<br>New York, NY 535022</p>
+              </div>
+              <div class="col-lg-6 info" data-aos="fade-up" data-aos-delay="100">
+                <i class="bx bx-phone"></i>
+                <h4>Call Us</h4>
+                <p>+1 5589 55488 55<br>+1 5589 22548 64</p>
+              </div>
+              <div class="col-lg-6 info" data-aos="fade-up" data-aos-delay="200">
+                <i class="bx bx-envelope"></i>
+                <h4>Email Us</h4>
+                <p>contact@example.com<br>info@example.com</p>
+              </div>
+              <div class="col-lg-6 info" data-aos="fade-up" data-aos-delay="300">
+                <i class="bx bx-time-five"></i>
+                <h4>Working Hours</h4>
+                <p>Mon - Fri: 9AM to 5PM<br>Sunday: 9AM to 1PM</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <form action="payment/" method="post" role="form" class="php-email-form" data-aos="fade-up">{% csrf_token %}
+              <div class="form-group">
+                <input placeholder="Your Name" type="text" name="name" class="form-control" id="payment-name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <input placeholder="Your Email" type="email" class="form-control" name="email" id="payment-email" data-rule="email" data-msg="Please enter a valid email" />
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <input placeholder="Mobile" type="text" class="form-control" name="mobile" id="mobile" data-rule="minlen:4" data-msg="Please enter mobile number" />
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <input placeholder="Amount" type="text" class="form-control" name="amount" id="amount" data-rule="minlen:1" data-msg="Please enter amount of payment" />
+                <div class="validate"></div>
+              </div>
+<!--              <div class="mb-3">-->
+<!--                <div class="loading">Loading</div>-->
+<!--                <div class="error-message"></div>-->
+<!--                <div class="sent-message">Your money has been sent. Thank you!</div>-->
+<!--              </div>-->
+              <div class="text-center"><button type="submit">Send Money</button></div>
             </form>
           </div>
 
@@ -628,6 +704,19 @@
 
   <!-- Template Main JS File -->
   <script src='{% static "intro/js/main.js" %}'></script>
+
+<!--  <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>-->
+<!--  <script>-->
+<!--    mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycnkxMjM0OTgiLCJhIjoiY2s4OXh1c3BqMGFsZzNvbXA3YmYyaGFhYSJ9.wmVMiMxlSqpzJPsj-UXr3Q';-->
+<!--    var map = new mapboxgl.Map({-->
+<!--      container: 'map',-->
+<!--      style: 'mapbox://styles/mapbox/dark-v10',-->
+<!--      zoom: 1,-->
+<!--      center: [0,20]-->
+<!--    });-->
+<!--  </script>-->
+
+<!--  <script src='{% static "intro/js/map.js" %}'></script>-->
 
 </body>
 
