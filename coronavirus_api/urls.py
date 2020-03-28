@@ -26,7 +26,8 @@ router.register('cities', CitiesViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
+    path('api', include(router.urls)),
     path('cases/', include('appdata.urls')),
+    path('', include('intro.urls')),
 ]
 urlpatterns += router.urls
