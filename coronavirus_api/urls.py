@@ -15,19 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers
-
-from appdata.views import StatesViewSet, CountriesViewSet, CitiesViewSet
-
-router = routers.DefaultRouter()
-router.register('countries', CountriesViewSet)
-router.register('states', StatesViewSet)
-router.register('cities', CitiesViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api', include(router.urls)),
-    path('cases/', include('appdata.urls')),
+    path('api/', include('appdata.urls')),
     path('', include('intro.urls')),
 ]
-urlpatterns += router.urls

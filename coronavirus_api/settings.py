@@ -32,6 +32,7 @@ env_config = AutoConfig()
 
 MID = env_config('MID')
 MERCHANT_KEY = env_config('MERCHANT_KEY')
+DOMAIN = env_config('DOMAIN')
 
 
 # Application definition

@@ -104,6 +104,7 @@ class CountyCasesSerializer(serializers.ModelSerializer):
             'total_cases': total_cases_count,
             'total_deaths': total_deaths_count,
             'total_recovers': total_recovers_count,
+            'slug': instance.slug,
             'states': self.get_states(instance)
         }
 
@@ -127,5 +128,6 @@ class StateCasesSerializer(serializers.ModelSerializer):
             'total_cases': total_city_cases.aggregate(Sum('total_cases'))['total_cases__sum'],
             'total_deaths': total_city_cases.aggregate(Sum('total_deaths'))['total_deaths__sum'],
             'total_recovers': total_city_cases.aggregate(Sum('total_recovers'))['total_recovers__sum'],
+            'slug': instance.slug,
             'cities': self.get_cities(instance)
         }
