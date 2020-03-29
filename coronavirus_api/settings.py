@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from decouple import AutoConfig
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,6 +27,11 @@ SECRET_KEY = '*krq7tlp6fj&d76=5fy2r(2gp4_wc5i6qz^f10fve*71+3k3)1'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+
+env_config = AutoConfig()
+
+MID = env_config('MID')
+MERCHANT_KEY = env_config('MERCHANT_KEY')
 
 
 # Application definition

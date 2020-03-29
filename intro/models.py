@@ -8,7 +8,7 @@ class SupportModel(models.Model):
     mobile = models.CharField(max_length=16)
     amount = models.FloatField()
     status = models.BooleanField(default=False)
-    failed_reason = models.CharField(max_length=500, null=True, blank=True)
+    status_msg = models.CharField(max_length=500, null=True, blank=True)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(null=True, blank=True)
 
