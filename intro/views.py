@@ -39,7 +39,7 @@ def payment(request):
             'INDUSTRY_TYPE_ID': 'Retail',
             'WEBSITE': 'coronavirusapis',
             'CHANNEL_ID': 'WEB',
-            'CALLBACK_URL': 'http://127.0.0.1:8000/handler-payment/',
+            'CALLBACK_URL': 'https://coronavirus-apis.herokuapp.com//handler-payment/',
         }
         param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(param_dict, MERCHANT_KEY)
         return render(request, 'intro/paytm.html', {'param_dict': param_dict})
