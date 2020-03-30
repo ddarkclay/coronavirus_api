@@ -3,7 +3,7 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from appdata.models import CountryModel, StateModel, CityCasesModel
+from appdata.models import CountryModel, StateCasesModel, CityCasesModel
 from appdata.serializers import CountriesSerializers, StatesSerializers, CitiesSerializers, StateCasesSerializer, \
     CountyCasesSerializer
 from coronavirus_api.settings import DOMAIN
@@ -91,33 +91,33 @@ class StatesViewSet(APIView):
     def get(request, state_slug=None):
         if state_slug:
             try:
-                state_obj = StateModel.objects.get(slug=state_slug, is_active=True)
+                state_obj = StateCasesModel.objects.get(slug=state_slug, is_active=True)
                 state_srlzer = StatesSerializers(state_obj)
                 return Response(state_srlzer.data, status=status.HTTP_200_OK)
-            except StateModel.DoesNotExist:
+            except StateCasesModel.DoesNotExist:
                 return Response({'message': 'State does not exists'}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            states_obj = StateModel.objects.filter(is_active=True)
+            states_obj = StateCasesModel.objects.filter(is_active=True)
             states_srlzer = StatesSerializers(states_obj, many=True)
             return Response(states_srlzer.data, status=status.HTTP_200_OK)
 
     @staticmethod
     def put(request, state_slug):
         try:
-            state_obj = StateModel.get(slug=state_slug, is_active=True)
+            state_obj = StateCasesModel.get(slug=state_slug, is_active=True)
             state_srlzer = StatesSerializers(request.data, state_obj)
             return Response({'message': 'State updated successfully', 'details': state_srlzer.data},
                             status=status.HTTP_200_OK)
-        except StateModel.DoesNotExist:
+        except StateCasesModel.DoesNotExist:
             return Response({'message': 'State does not exists'}, status=status.HTTP_400_BAD_REQUEST)
 
     @staticmethod
     def delete(request, state_slug):
         try:
-            state_obj = StateModel.objects.get(slug=state_slug, is_active=True)
+            state_obj = StateCasesModel.objects.get(slug=state_slug, is_active=True)
             state_obj.is_active = False
             return Response({'message': 'State delete successfully'}, status=status.HTTP_200_OK)
-        except StateModel.DoesNotExist:
+        except StateCasesModel.DoesNotExist:
             return Response({'message': 'State does not exists'}, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -202,11 +202,11 @@ class StatesCasesView(APIView):
     def get(request, state_slug=None):
         if state_slug:
             try:
-                state_obj = StateModel.objects.get(slug=state_slug, is_active=True)
+                state_obj = StateCasesModel.objects.get(slug=state_slug, is_active=True)
                 state_case_srlzer = StateCasesSerializer(state_obj)
-            except StateModel.DoesNotExist:
+            except StateCasesModel.DoesNotExist:
                 return Response({'message': 'State does not exist'}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            states_obj = StateModel.objects.filter(is_active=True)
+            states_obj = StateCasesModel.objects.filter(is_active=True)
             state_case_srlzer = StateCasesSerializer(states_obj, many=True)
         return Response(state_case_srlzer.data, status=status.HTTP_200_OK)
