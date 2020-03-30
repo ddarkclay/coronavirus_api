@@ -23,13 +23,16 @@ class CountryModel(models.Model):
         super().save(*args, **kwargs)
 
 
-class StateModel(models.Model):
+class StateCasesModel(models.Model):
     name = models.CharField(max_length=50)
     country = models.ForeignKey(CountryModel, on_delete=models.CASCADE, related_name='county_of_state')
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(null=True, blank=True)
     slug = models.CharField(max_length=70, default="")
+    total_cases = models.IntegerField(null=True, blank=True)
+    total_deaths = models.IntegerField(null=True, blank=True)
+    total_recovers = models.IntegerField(null=True, blank=True)
 
     class Meta:
         db_table = 'state'
@@ -39,13 +42,13 @@ class StateModel(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = unique_slug_generator(name=self.name, class_name=StateModel)
+            self.slug = unique_slug_generator(name=self.name, class_name=StateCasesModel)
         super().save(*args, **kwargs)
 
 
 class CityCasesModel(models.Model):
     name = models.CharField(max_length=50)
-    state = models.ForeignKey(StateModel, on_delete=models.CASCADE, related_name='state_of_city')
+    state = models.ForeignKey(StateCasesModel, on_delete=models.CASCADE, related_name='state_of_city')
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(null=True, blank=True)
