@@ -10,6 +10,7 @@ class CountryModel(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(null=True, blank=True)
     slug = models.CharField(max_length=70, default="")
+    code = models.CharField(max_length=10, null=True)
 
     class Meta:
         db_table = 'countries'
@@ -33,6 +34,10 @@ class StateCasesModel(models.Model):
     total_cases = models.IntegerField(null=True, blank=True)
     total_deaths = models.IntegerField(null=True, blank=True)
     total_recovers = models.IntegerField(null=True, blank=True)
+    latitude = models.CharField(max_length=50, null=True, blank=True)
+    longitude = models.CharField(max_length=50, null=True, blank=True)
+    population = models.CharField(max_length=50, null=True, blank=True)
+    sick = models.IntegerField(null=True, blank=True)
 
     class Meta:
         db_table = 'state'
