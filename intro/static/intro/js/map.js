@@ -1,6 +1,6 @@
 function updateMap() {
     console.log("Updating map with realtime data")
-    fetch("/static/intro/data.json")
+    fetch("/static/intro/updated_data.json")
         .then(response => response.json())
         .then(rsp => {
 //             console.log(rsp.data)
